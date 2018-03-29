@@ -13,37 +13,37 @@ function comments(state = [], action) {
                         text: action.text,
                         votes: 0
                     }
-                    , ...state.comments];
+                    , ...state];
         case REMOVE_COMMENT:
-        return [{
-            comments: state.comments.filter(comment => comment.id !== action.id)
-        }];
+        
+            state.filter(comment => comment.id !== action.id);
+      
         case EDIT_COMMENT:
-        return [{
-            comments: state.comments.map(comment => {
+        
+            state.map(comment => {
                 if (comment.id === action.id) {
                     comment.text = action.text;
                 }
-            })
-        }];
+            });
+
         case THUMB_UP_COMMENT:
-        return [{
-            comments: state.comments.map(comment => {
+
+            state.map(comment => {
                 if (comment.id === action.id) {
                     comment.votes + 1;
                 }
-            })
-        }];
+            });
+
         case THUMB_DOWN_COMMENT:
-        return [{
-            comments: state.comments.map(comment => {
+   
+            state.map(comment => {
                 if (comment.id === action.id) {
                     comment.votes + 1;
                 }
-            })
-        }];
+            });
+
         default:
-            return state.comments;
+            return state;
     }
 };
 
