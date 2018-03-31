@@ -16,36 +16,34 @@ function comments(state = [], action) {
                     }
                     , ...state];
         case REMOVE_COMMENT:
-        
-            state.filter(comment => comment.id !== action.id);
-      
-        case EDIT_COMMENT:
-        
-            state.map(comment => {
+            return state.filter(comment => comment.id !== action.id);      
+        case EDIT_COMMENT:        
+            return state.map(comment => {
                 if (comment.id === action.id) {
                     comment.text = action.text;
                 }
+                
+                return comment;
             });
-
         case THUMB_UP_COMMENT:
-
-            state.map(comment => {
+            return state.map(comment => {
                 if (comment.id === action.id) {
-                    comment.votes + 1;
+                    comment.votes = comment.votes + 1;
                 }
-            });
 
+                return comment;
+            });
         case THUMB_DOWN_COMMENT:
-   
-            state.map(comment => {
+            return state.map(comment => {
                 if (comment.id === action.id) {
-                    comment.votes + 1;
+                    comment.votes = comment.votes - 1;
                 }
-            });
 
+                return comment;
+            });
         default:
             return state;
     }
-};
+}
 
 export default comments;
